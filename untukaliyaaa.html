@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Main Menu Sayang 💖</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #ffdde1, #ee9ca7);
+      color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      text-align: center;
+      overflow: hidden;
+    }
+    .page {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      height: 100%;
+      width: 100%;
+    }
+    .page.active {
+      display: flex;
+      animation: fadeIn 0.8s ease;
+    }
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 20px;
+      line-height: 1.5;
+    }
+    .btn {
+      background: #ff4b91;
+      border: none;
+      padding: 14px 28px;
+      border-radius: 999px;
+      color: #fff;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      margin-top: 20px;
+      box-shadow: 0 8px 20px rgba(255, 75, 145, 0.4);
+      transition: 0.3s;
+    }
+    .btn:hover {
+      transform: scale(1.05);
+      box-shadow: 0 10px 28px rgba(255, 75, 145, 0.6);
+    }
+    .glow {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: #fff;
+      text-shadow: 0 0 8px #fff, 0 0 12px #ff2e76, 0 0 24px #ff4b91;
+    }
+    @keyframes fadeIn {
+      from {opacity: 0; transform: translateY(20px);}
+      to {opacity: 1; transform: translateY(0);}
+    }
+  </style>
+</head>
+<body>
+  <div class="page active" id="page1">
+    <h1>Haii sayangkuu 💖<br>Aku cuma mau bilang...<br>kamu itu istimewa banget di hidupku 😘</h1>
+    <button class="btn" onclick="nextPage(2)">Lanjut ➝</button>
+  </div>
+
+  <div class="page" id="page2">
+    <h1>Setiap hari sama kamu,<br>rasanya selalu penuh warna 🌸<br>kayak langit sore yang indahh 💞</h1>
+    <button class="btn" onclick="nextPage(3)">Lanjut ➝</button>
+  </div>
+
+  <div class="page" id="page3">
+    <h1>Aku bersyukur banget,<br>punya kamu di sisiku 🌹<br>Kamu alasanku tersenyum tiap hari 🥰</h1>
+    <button class="btn" onclick="nextPage(4)">Lanjut ➝</button>
+  </div>
+
+  <div class="page" id="page4">
+    <h1>💌 Dari hatiku untukmu 💌</h1>
+    <button class="btn glow" onclick="goToAnniversary()">Untuk kamu perempuanku,<br>Aliyah Safra W</button>
+  </div>
+
+  <script>
+    function nextPage(page) {
+      document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+      document.getElementById('page' + page).classList.add('active');
+    }
+    function goToAnniversary() {
+      window.location.href = "http://kurosecc-couy.github.io/cohai/sayangg.html";
+    }
+  </script>
+</body>
+</html>
