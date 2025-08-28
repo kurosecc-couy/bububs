@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Untuk Kamu</title>
+  <style>
+    body {
+      font-family: "Poppins", sans-serif;
+      text-align: center;
+      background: linear-gradient(135deg, #ffdde1, #ee9ca7);
+      margin: 0;
+      padding: 0;
+    }
+    .page {
+      display: none;
+      padding: 50px;
+    }
+    .active {
+      display: block;
+    }
+    h1, h2 {
+      color: #d6336c;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
+    }
+    .btn {
+      margin: 10px;
+      padding: 12px 25px;
+      background: linear-gradient(135deg, #ff9a9e, #fecfef);
+      border: none;
+      border-radius: 20px;
+      cursor: pointer;
+      font-size: 18px;
+      font-weight: bold;
+      color: #d6336c;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+      transition: all 0.3s ease;
+      display: inline-block;
+    }
+    .btn:hover {
+      transform: scale(1.08);
+      background: linear-gradient(135deg, #fecfef, #ff9a9e);
+      color: #fff;
+    }
+    .answer {
+      display: block;
+      width: 250px;
+      margin: 12px auto;
+      text-align: left;
+      padding: 12px 20px;
+      font-size: 16px;
+      border-radius: 15px;
+      background: white;
+      border: 2px solid #ff6b81;
+      color: #ff2e63;
+      transition: 0.3s;
+      cursor: pointer;
+      font-weight: 500;
+    }
+    .answer span {
+      font-weight: bold;
+      margin-right: 10px;
+      color: #ff2e63;
+    }
+    .answer:hover {
+      background: #ff2e63;
+      color: white;
+    }
+    .answer:hover span {
+      color: white;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Musik -->
+  <audio id="bg-music" loop>
+    <source src="https://github.com/kurosecc-couy/cihuy/raw/main/snaptik_7288725097794374918_v2.mp4" type="audio/mp4">
+  </audio>
+
+  <!-- Page 1 -->
+  <div class="page active" id="page1">
+    <h1>Welcome Sayangku 💖</h1>
+    <button class="btn" onclick="start()">Mulai</button>
+  </div>
+
+  <!-- Page 2 -->
+  <div class="page" id="page2">
+    <h2>Kamu sayang aku gak? 🥺</h2>
+    <button class="answer" onclick="nextPage(3)"><span>A.</span> Iya banget</button>
+    <button class="answer" onclick="nextPage(3)"><span>B.</span> Pasti iya dong</button>
+    <button class="answer" onclick="nextPage(3)"><span>C.</span> Sayang selalu</button>
+    <button class="answer" onclick="nextPage(3)"><span>D.</span> Aku cinta kamu</button>
+  </div>
+
+  <!-- Page 3 -->
+  <div class="page" id="page3">
+    <h2>Beneran sayang aku kan? 💕</h2>
+    <button class="answer" onclick="nextPage(4)"><span>A.</span> Iya bener</button>
+    <button class="answer" onclick="nextPage(4)"><span>B.</span> Sayang pol</button>
+    <button class="answer" onclick="nextPage(4)"><span>C.</span> Iya banget lah</button>
+    <button class="answer" onclick="nextPage(4)"><span>D.</span> Aku cinta kamu</button>
+  </div>
+
+  <!-- Page 4 -->
+  <div class="page" id="page4">
+    <h2>Kamu cinta aku kan? 💖</h2>
+    <button class="answer" onclick="nextPage(5)"><span>A.</span> Iya cinta</button>
+    <button class="answer" onclick="nextPage(5)"><span>B.</span> Selalu cinta</button>
+    <button class="answer" onclick="nextPage(5)"><span>C.</span> Cinta selamanya</button>
+    <button class="answer" onclick="nextPage(5)"><span>D.</span> Aku bener-bener cinta</button>
+  </div>
+
+  <!-- Page 5 -->
+  <div class="page" id="page5">
+    <h2>Kamu gak akan ninggalin aku kan? 😢</h2>
+    <button class="answer" onclick="nextPage(6)"><span>A.</span> Enggak, aku sayang kamu</button>
+    <button class="answer" onclick="nextPage(6)"><span>B.</span> Aku tetap di sini</button>
+    <button class="answer" onclick="nextPage(6)"><span>C.</span> Selalu sama kamu</button>
+    <button class="answer" onclick="nextPage(6)"><span>D.</span> Gak bakal ninggalin</button>
+  </div>
+
+  <!-- Page 6 -->
+  <div class="page" id="page6">
+    <h2>Kamu beneran milikku kan? 💞</h2>
+    <button class="answer" onclick="nextPage(7)"><span>A.</span> Iya, milikmu</button>
+    <button class="answer" onclick="nextPage(7)"><span>B.</span> Selamanya punya kamu</button>
+    <button class="answer" onclick="nextPage(7)"><span>C.</span> Aku milikmu doang</button>
+    <button class="answer" onclick="nextPage(7)"><span>D.</span> Iya sayang</button>
+  </div>
+
+  <!-- Page 7 -->
+  <div class="page" id="page7">
+    <h2>Hehe makasih udah jawab sayang 💓</h2>
+    <button class="btn" onclick="window.location.href='https://kurosecc-couy.github.io/bububs/untukaliyaaaa.html'">
+      Klik disini ih 💕
+    </button>
+  </div>
+
+  <script>
+    function nextPage(num) {
+      document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+      document.getElementById('page' + num).classList.add('active');
+    }
+    function start() {
+      nextPage(2);
+      document.getElementById("bg-music").play();
+    }
+  </script>
+
+</body>
+</html>
