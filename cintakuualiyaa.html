@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Love Memory – 5 Pages</title>
+  <style>
+    :root{
+      --bg:#0f0f14;
+      --fg:#fff;
+      --sub:#ff77aa;
+      --accent:#ff4d88;
+      --muted:#ffffffcc;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0}
+    body{
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Noto Sans, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      color:var(--fg);
+      background: radial-gradient(1200px 800px at 20% -10%, #1b1220 0%, transparent 60%),
+                  radial-gradient(900px 700px at 120% 20%, #1a1a28 0%, transparent 60%),
+                  var(--bg);
+      overflow:hidden;
+    }
+
+    /* === Floating emoji background === */
+    .emoji-bg{position:fixed; inset:0; pointer-events:none; overflow:hidden; z-index:0}
+    .emoji-bg span{
+      position:absolute; font-size:clamp(16px, 3vw, 28px); opacity:.12; filter:drop-shadow(0 2px 2px rgba(0,0,0,.2));
+      animation: floatUp linear infinite;
+    }
+    @keyframes floatUp{ from{ transform:translateY(110vh) rotate(0deg)} to{ transform:translateY(-15vh) rotate(360deg)} }
+    /* place a bunch with nth-child to vary */
+    /* generate 28 hearts */
+    /* You can add more by duplicating lines below */
+    .emoji-bg span:nth-child(1){ left:3%; animation-duration:20s; animation-delay:-2s }
+    .emoji-bg span:nth-child(2){ left:10%; animation-duration:24s; animation-delay:-8s }
+    .emoji-bg span:nth-child(3){ left:17%; animation-duration:26s; animation-delay:-12s }
+    .emoji-bg span:nth-child(4){ left:22%; animation-duration:21s; animation-delay:-4s }
+    .emoji-bg span:nth-child(5){ left:29%; animation-duration:25s; animation-delay:-15s }
+    .emoji-bg span:nth-child(6){ left:34%; animation-duration:19s; animation-delay:-6s }
+    .emoji-bg span:nth-child(7){ left:41%; animation-duration:23s; animation-delay:-10s }
+    .emoji-bg span:nth-child(8){ left:47%; animation-duration:20s; animation-delay:-1s }
+    .emoji-bg span:nth-child(9){ left:53%; animation-duration:24s; animation-delay:-9s }
+    .emoji-bg span:nth-child(10){ left:59%; animation-duration:22s; animation-delay:-3s }
+    .emoji-bg span:nth-child(11){ left:64%; animation-duration:26s; animation-delay:-13s }
+    .emoji-bg span:nth-child(12){ left:69%; animation-duration:21s; animation-delay:-5s }
+    .emoji-bg span:nth-child(13){ left:74%; animation-duration:25s; animation-delay:-11s }
+    .emoji-bg span:nth-child(14){ left:79%; animation-duration:19s; animation-delay:-7s }
+    .emoji-bg span:nth-child(15){ left:84%; animation-duration:23s; animation-delay:-14s }
+    .emoji-bg span:nth-child(16){ left:89%; animation-duration:20s; animation-delay:-2s }
+    .emoji-bg span:nth-child(17){ left:7%; animation-duration:27s; animation-delay:-16s }
+    .emoji-bg span:nth-child(18){ left:15%; animation-duration:22s; animation-delay:-9s }
+    .emoji-bg span:nth-child(19){ left:26%; animation-duration:24s; animation-delay:-6s }
+    .emoji-bg span:nth-child(20){ left:38%; animation-duration:28s; animation-delay:-18s }
+    .emoji-bg span:nth-child(21){ left:44%; animation-duration:21s; animation-delay:-5s }
+    .emoji-bg span:nth-child(22){ left:61%; animation-duration:29s; animation-delay:-20s }
+    .emoji-bg span:nth-child(23){ left:72%; animation-duration:23s; animation-delay:-12s }
+    .emoji-bg span:nth-child(24){ left:81%; animation-duration:26s; animation-delay:-15s }
+    .emoji-bg span:nth-child(25){ left:93%; animation-duration:22s; animation-delay:-8s }
+    .emoji-bg span:nth-child(26){ left:2%; animation-duration:30s; animation-delay:-22s }
+    .emoji-bg span:nth-child(27){ left:50%; animation-duration:27s; animation-delay:-17s }
+    .emoji-bg span:nth-child(28){ left:76%; animation-duration:20s; animation-delay:-4s }
+
+    /* === App container & pages === */
+    .app{position:relative; z-index:1; height:100vh; width:100vw; display:grid; place-items:center}
+    .page{position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:24px; padding:24px; opacity:0; transform:translateX(40px) scale(.98); transition: all .5s ease; pointer-events:none}
+    .page.active{opacity:1; transform:translateX(0) scale(1); pointer-events:auto}
+
+    h1,h2{margin:0; text-align:center}
+    h1{font-size:clamp(28px,5vw,52px); letter-spacing:.5px}
+    h2{font-size:clamp(18px,3.2vw,28px); color:var(--muted)}
+
+    .card{
+      backdrop-filter: blur(8px);
+      background: rgba(255,255,255,.04);
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: 24px; padding: 28px; box-shadow: 0 10px 30px rgba(0,0,0,.25);
+      max-width: min(900px, 92vw);
+    }
+
+    .btn{appearance:none; border:none; cursor:pointer; font-weight:700; letter-spacing:.3px; padding:14px 20px; border-radius:999px; background: linear-gradient(135deg, var(--accent), var(--sub)); color:white; box-shadow:0 8px 24px rgba(255,77,136,.35); transition:transform .08s ease, box-shadow .2s ease; font-size:clamp(14px,2.6vw,18px)}
+    .btn:hover{transform:translateY(-1px); box-shadow:0 12px 28px rgba(255,77,136,.45)}
+    .btn:active{transform:translateY(1px)}
+
+    .hint{font-size:.95rem; opacity:.8}
+
+    .media{max-width:min(760px, 92vw); width:100%; border-radius:20px; overflow:hidden; border:1px solid rgba(255,255,255,.08); box-shadow:0 10px 24px rgba(0,0,0,.3)}
+    .media img{display:block; width:100%; height:auto}
+
+    /* Next arrow */
+    .next{position:absolute; right:20px; bottom:20px; display:inline-flex; align-items:center; gap:10px; padding:12px 16px; border-radius:999px; background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.08); color:#fff; font-weight:700; cursor:pointer; user-select:none; transition:background .2s ease, transform .08s ease}
+    .next:hover{background:rgba(255,255,255,.12)}
+    .next:active{transform:translateY(1px)}
+
+    /* Page 4 special layout */
+    .p4-title{font-size:clamp(26px,6vw,56px); text-align:center; text-shadow:0 6px 20px rgba(255,77,136,.25)}
+    .float-wrap{position:relative; width:min(900px, 92vw); height: min(420px, 70vh)}
+    .bubble{
+      position:absolute; width:min(220px, 40vw); aspect-ratio:1/1; border-radius:50%; overflow:hidden; border: 3px solid rgba(255,255,255,.18); box-shadow:0 12px 28px rgba(0,0,0,.35), inset 0 0 40px rgba(255,77,136,.15);
+      animation: gentle 8s ease-in-out infinite;
+      background: rgba(255,255,255,.06);
+      backdrop-filter: blur(6px);
+    }
+    .bubble img{width:100%; height:100%; object-fit:cover}
+    @keyframes gentle{ 0%{ transform:translateY(0)} 50%{ transform:translateY(-14px)} 100%{ transform:translateY(0)} }
+    .b1{ left:0; top:10% }
+    .b2{ left:calc(50% - min(110px, 20vw)); top:0; animation-delay:-2s }
+    .b3{ right:0; bottom:6%; animation-delay:-1s }
+
+    /* Page 5 CTA */
+    .cta{display:flex; flex-direction:column; align-items:center; gap:16px}
+    .cta a{ text-decoration:none }
+
+    /* small banner chip */
+    .chip{padding:8px 12px; border-radius:999px; background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.1); font-size:.9rem}
+
+  </style>
+</head>
+<body>
+  <!-- Floating background emojis -->
+  <div class="emoji-bg" aria-hidden="true">
+    <!-- Use a mix for variety -->
+    <span>❤️</span><span>💖</span><span>💘</span><span>💕</span><span>💓</span><span>💞</span><span>💗</span><span>❤️</span>
+    <span>💖</span><span>💘</span><span>💕</span><span>💓</span><span>💞</span><span>💗</span><span>❤️</span><span>💖</span>
+    <span>💘</span><span>💕</span><span>💓</span><span>💞</span><span>💗</span><span>❤️</span><span>💖</span><span>💘</span>
+    <span>💕</span><span>💓</span><span>💞</span><span>💗</span>
+  </div>
+
+  <div class="app">
+
+    <!-- Page 1: Main Menu -->
+    <section class="page active" id="page-1">
+      <div class="card" style="text-align:center">
+        <h1>Hai sayang ❤️</h1>
+        <h2>Selamat datang di memory kecil kita</h2>
+        <p class="hint">Klik tombol di bawah ini ya~</p>
+        <button id="playBtn" class="btn">masih inget ini?</button>
+      </div>
+      <button class="next" data-next="2" aria-label="Lanjut ke halaman 2">Lanjut ➜</button>
+    </section>
+
+    <!-- Page 2: Foto chat awal dekat di Discord -->
+    <section class="page" id="page-2">
+      <div class="card">
+        <h1>Awal Kita Dekat di Discord</h1>
+        <div class="media">
+          <img src="https://github.com/kurosecc-couy/bububs/raw/main/WhatsApp%20Image%202025-08-26%20at%2020.52.54%20(1).jpeg" alt="Chat awal dekat di Discord" loading="lazy" />
+        </div>
+      </div>
+      <button class="next" data-next="3" aria-label="Lanjut ke halaman 3">Lanjut ➜</button>
+    </section>
+
+    <!-- Page 3: Foto pas jadian -->
+    <section class="page" id="page-3">
+      <div class="card">
+        <h1>Momen Pas Jadian</h1>
+        <div class="media">
+          <img src="https://github.com/kurosecc-couy/bububs/raw/main/WhatsApp%20Image%202025-08-26%20at%2022.08.00%20(1).jpeg" alt="Foto saat jadian" loading="lazy" />
+        </div>
+      </div>
+      <button class="next" data-next="4" aria-label="Lanjut ke halaman 4">Lanjut ➜</button>
+    </section>
+
+    <!-- Page 4: PACAR AKU YANG CANTIKK + 3 bulat mengambang -->
+    <section class="page" id="page-4">
+      <div class="card" style="background:rgba(255,255,255,.03)">
+        <div class="chip">Untuk kamu ❤️</div>
+        <div class="p4-title">PACAR AKU YANG CANTIKK</div>
+        <div class="float-wrap">
+          <figure class="bubble b1">
+            <img src="https://github.com/kurosecc-couy/bububs/raw/main/WhatsApp%20Image%202025-08-18%20at%2011.11.02.jpeg" alt="Foto 1" loading="lazy" />
+          </figure>
+          <figure class="bubble b2">
+            <img src="https://github.com/kurosecc-couy/bububs/raw/main/WhatsApp%20Image%202025-08-24%20at%2015.13.05%20(1).jpeg" alt="Foto 2" loading="lazy" />
+          </figure>
+          <figure class="bubble b3">
+            <img src="https://github.com/kurosecc-couy/bububs/raw/main/WhatsApp%20Image%202025-08-24%20at%2015.13.05%20(3).jpeg" alt="Foto 3" loading="lazy" />
+          </figure>
+        </div>
+      </div>
+      <button class="next" data-next="5" aria-label="Lanjut ke halaman 5">Lanjut ➜</button>
+    </section>
+
+    <!-- Page 5: CTA ke link -->
+    <section class="page" id="page-5">
+      <div class="card cta">
+        <h1>Terakhir satu lagi 🫶</h1>
+        <h2>Ada sesuatu untukmu</h2>
+        <a class="btn" href="https://kurosecc-couy.github.io/bububs/aliyapunyakuu">pencet ini ya sayangg</a>
+        <p class="hint">Link di atas akan membawamu ke halaman spesial ✨</p>
+      </div>
+      <!-- No next button here by request -->
+    </section>
+
+  </div>
+
+  <!-- Audio -->
+  <audio id="bgm" preload="auto">
+    <source src="https://github.com/kurosecc-couy/cihuy/raw/main/ssstik.io_1755437894133%20(1).mp3" type="audio/mpeg" />
+  </audio>
+
+  <script>
+    const pages = Array.from(document.querySelectorAll('.page'));
+    const toPage = (n)=>{
+      pages.forEach(p => p.classList.remove('active'));
+      const el = document.getElementById('page-'+n);
+      if(el) el.classList.add('active');
+      // smooth scroll lock for mobile
+      window.scrollTo({top:0, behavior:'smooth'});
+    };
+
+    // Next buttons
+    document.querySelectorAll('.next').forEach(btn=>{
+      btn.addEventListener('click', () => toPage(btn.dataset.next));
+    });
+
+    // Play on main button
+    const playBtn = document.getElementById('playBtn');
+    const audio = document.getElementById('bgm');
+    let started = false;
+    playBtn.addEventListener('click', async () => {
+      try{
+        await audio.play();
+        started = true;
+        playBtn.textContent = '🎵 Lagi diputar...';
+      }catch(e){
+        // Some browsers block autoplay; show hint to user
+        playBtn.textContent = 'Klik lagi untuk play 🎵';
+      }
+    });
+
+    // Optional: also start music when user advances from page 1 (if they've pressed play at least once)
+    document.querySelector('#page-1 .next').addEventListener('click', async ()=>{
+      if(!started){
+        try{ await audio.play(); }catch(_){/* ignore */}
+      }
+    });
+  </script>
+</body>
+</html>
